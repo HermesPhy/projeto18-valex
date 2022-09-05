@@ -8,6 +8,9 @@ import {
 } from "../middlewares/validationMiddleware.js";
 import newCard from "../controllers/newCardController.js";
 import activateCard from "../controllers/activateCardController.js";
+//mport getBalance from "../controllers/balanceController.js";
+//import lockCard from "../controllers/lockCardController.js";
+//import unlockCard from "../controllers/unlockCardController.js";
 
 const cardRouter = Router();
 
@@ -18,5 +21,8 @@ cardRouter.post(
   activateCardValidation,
   activateCard
 );
+//cardRouter.get('/card/:id/balance', cardValidationByParamsId, getBalance);
+//cardRouter.post('/card/:id/lock', cardValidationByParamsId, lockCard);
+//cardRouter.post('/card/:id/unlock', cardValidationByParamsId, unlockCard);
 
 export default cardRouter;
