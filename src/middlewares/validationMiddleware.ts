@@ -1,7 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import dayjs from "dayjs";
 
-import { cardTypeSchema, activateCardSchema } from "../utils/schemas.js";
+import {
+  cardTypeSchema,
+  activateCardSchema,
+  paymentSchema,
+} from "../utils/schemas.js";
 import { findByApiKey } from "../repositories/companyRepository.js";
 import { Card, findById } from "../repositories/cardRepository.js";
 
@@ -29,7 +33,6 @@ export function newCardValidation(
   next: NextFunction
 ) {
   const { employeeId, type }: { employeeId: number; type: string } = req.body;
-  console.log(req.body);
   const { error } = cardTypeSchema.validate({ employeeId, type });
   if (error) {
     return res.status(422).send(error.details);
@@ -87,4 +90,14 @@ export async function cardValidationByDate(card: Card) {
   const parseCardDate = new Date(parseInt(cardYear), parseInt(cardMouth), 0);
   if (parseCurrentDate > parseCardDate)
     throw { type: "invalid_date", message: "Cartão expirado", statusCode: 401 };
+}
+
+export function paymentValidation(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const { error } = paymentSchema.validate(req.body);
+  if (error) res.status(422).send(error.details);
+  next();
 }

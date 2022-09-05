@@ -8,7 +8,7 @@ import {
 } from "../middlewares/validationMiddleware.js";
 import newCard from "../controllers/newCardController.js";
 import activateCard from "../controllers/activateCardController.js";
-//mport getBalance from "../controllers/balanceController.js";
+//import getBalance from "../controllers/balanceController.js";
 //import lockCard from "../controllers/lockCardController.js";
 //import unlockCard from "../controllers/unlockCardController.js";
 
